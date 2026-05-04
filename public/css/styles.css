@@ -231,20 +231,18 @@ canvas {
 
 .distributorsDiv, .ingredientsDiv {
   background-color: #2a1006;
+  height: 40rem;
 }
 
 .distributorsDiv h3 {
   color: #FFF5EB;
 }
 
-.originDiv, .ingredientsDiv {
-  height: 100%;
-}
-
 .distributorsContent, .ingredientsContent, .originContent {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 40rem;
 }
 
 .distributorsLayout {
@@ -252,9 +250,8 @@ canvas {
   flex-direction: row; 
   align-items: center; 
   justify-content: space-around; 
-  width: 100%;
-  margin-top: 20px;
   gap: 30px; 
+  height: 40rem;
 }
 
 .distributorsLayout div {
@@ -265,7 +262,6 @@ canvas {
   margin: 10rem;
   color: #FFF5EB;
   background-color: rgb(128, 73, 41);
-  padding: 4rem;
 }
 
 .historyTimeline {
