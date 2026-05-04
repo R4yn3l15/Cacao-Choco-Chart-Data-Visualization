@@ -1,0 +1,20 @@
+{
+  "name": "cs-546-lab-8",
+  "version": "1.0.0",
+  "description": "My lab 8 module",
+  "license": "ISC",
+  "author": "Raynelis Villa 20024993",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "axios": "^1.13.6",
+    "chart.js": "^4.5.1",
+    "chartjs-chart-treemap": "^3.1.0",
+    "express": "^5.2.1",
+    "express-handlebars": "^8.0.7"
+  }
+}

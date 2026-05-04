@@ -1,0 +1,146 @@
+<div class="bodyContent">
+  <h2 class="navHeading">Data</h2>
+
+  <section>
+    {{!-- Dark Chocolate Ingredients --}}
+    <div class="ingredientsDiv">
+      <div class="ingredientsContent">
+        <h3>Dark Chocolate Ingredient Combos</h3>
+        {{!-- <p id="ingredientDescription">Dark chocolate bars can be made of different ingredient combinations!</p> --}}
+        <canvas id="ingredientsChart"></canvas>
+        <div class="pieLegend">
+          {{#each ingredientCombos}}
+            <span class="pieLegendText" data-index="{{@index}}">{{this.label}}: {{this.value}} bars</span>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+
+    {{!-- Cacao Bean Origins --}}
+    <div class="originDiv">
+      <div class="originContent">
+        <h3>Bean Origin Distribution</h3>
+        {{!-- <p id="originDescription">Count of Cacao Bean Types of the Top 5 distributors</p> --}}
+        <img src="/public/images/beanOriginAsset.png" alt="Tree map of cacao bean origins in shape of box of chocolates">
+        <div class="treeMapLegend">
+          {{#each origins}}
+            <span class="treeMapLegendText" data-index="{{@index}}"> {{this.abr}}: {{this.country}}</span>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+
+    {{!-- Dominican Chocolate Flabor Profile --}}
+    <div class="distributorsDiv">
+      <div class="distributorsContent">
+        <h3>Common Flavor Profiles</h3>
+        <div class="distributorsLayout">
+          <div>        
+            <p>The Domican Republic exports the cacao beans of most varieties to make dark chocolate. 
+              These are the most common characteristics of dark chocolate from this country.
+          </p></div>
+          <div>
+            <canvas id="radarChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<script>
+const tasteRadarChart = document.getElementById('radarChart');
+
+  const radarLabels = [
+    {{#each characteristicRadarData.labels}}
+    "{{this}}",
+    {{/each}}
+  ];
+
+  const radarDatasets = [
+    {{#each characteristicRadarData.data}}
+    {
+      label: "{{this.origin}}",
+      data: [{{#each this.scores}}{{this}},{{/each}}],
+      fill: true,
+      borderColor: ['#e8a882', '#d4b896', '#9b5e2a', '#5c2d0a', '#2a1006'][{{@index}}],
+      backgroundColor: [
+        'rgba(232, 168, 130, 0.2)', 
+        'rgba(212, 184, 150, 0.2)', 
+        'rgba(155, 94, 42, 0.2)', 
+        'rgba(92, 45, 10, 0.2)', 
+        'rgba(42, 16, 6, 0.2)'
+      ][{{@index}}],
+      pointBackgroundColor: ['#e8a882', '#d4b896', '#9b5e2a', '#5c2d0a', '#2a1006'][{{@index}}]
+    },
+    {{/each}}
+  ];
+
+  new Chart(tasteRadarChart, {
+    type: 'radar',
+    data: {
+      labels: radarLabels,
+      datasets: radarDatasets
+    },
+    options: {
+      responsive: false,
+      scales: {
+        r: {
+          min: 1, // center of radar to start w/ 1
+          angleLines: { color: 'rgba(245, 237, 224, 0.7)' },
+          grid: { color: 'rgba(245, 237, 224, 0.5)' },
+          pointLabels: { 
+            color: '#f5ede0',
+            font: { family: 'Italiana', size: 32, weight: '600' } 
+          },
+          ticks: { display: false }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
+    }
+  });
+
+  const ingredientsChart = document.getElementById('ingredientsChart');
+  const ingredientCombos = [
+      {{#each ingredientCombos}}
+      { label: "{{this.label}}", value: {{this.value}} },
+      {{/each}}
+    ];
+
+  new Chart(ingredientsChart, {
+    type: 'pie',
+    data: {
+      labels: ingredientCombos.map(i => i.label),
+      datasets: [{
+        data: ingredientCombos.map(i => i.value),
+        backgroundColor: ['#db9045', '#efae6d', '#f8ebd4', '#fab69c', '#f69273'],
+        borderColor: '#2a1006',
+        borderWidth: 3,
+        hoverOffset: 7,
+        borderRadius: 6,
+        spacing: 2,
+      }]
+    },
+    options: {
+      responsive: false,
+      plugins: {
+      legend: {
+        display: false,
+        position: 'bottom',
+        labels: {
+          font: {size: 12, family: 'Italiana', weight: 600 },
+          pointStyle: 'rect',
+          usePointStyle: true,
+          padding: 24,
+          color: '#FFF5EB'
+        }
+      }
+      }
+    }
+  });
+</script>
