@@ -256,6 +256,7 @@ canvas {
 
 .distributorsLayout p {
   margin: 10rem;
+  padding: 5rem;
   color: #FFF5EB;
   background-color: rgb(128, 73, 41);
 }
