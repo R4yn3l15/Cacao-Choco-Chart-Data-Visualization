@@ -71,7 +71,7 @@ h1, h2, h3, .nav-brand {
 }
 
 .dataCard, .historyCard, .aboutCard {
-  background: #2a1006;
+  background: #f5ede0;
   padding: 4vh 3vw;
   display: flex;
   flex-direction: column;
@@ -88,7 +88,7 @@ h1, h2, h3, .nav-brand {
 }
 
 .dataCard p, .historyCard p, .aboutCard p {
-  color: #f5ede0;
+  color: #2a1006;
   font-size: 1vw;
   padding: 0;
 }
